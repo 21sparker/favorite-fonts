@@ -1,0 +1,23 @@
+.container {
+    padding: 30px 150px 0 150px;
+}
+
+.toolbar {
+    height: 50px;
+    border: 1px solid #dadce0;
+    border-radius: 48px;
+}
+
+.search-container {
+    display: inline-block;
+    padding: 12px 0 12px 20px;
+}
+
+.search-input {
+    height: 26px;
+    border: none;
+}
+
+.search-input:focus {
+    outline: none;
+}
