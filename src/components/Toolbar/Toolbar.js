@@ -7,6 +7,7 @@ const Toolbar = () => {
                 <div className={styles['search-container']}>
                     <input
                         type='text'
+                        placeholder='Search fonts'
                         className={styles['search-input']}/>
                 </div>
             </div>    
