@@ -27,3 +27,23 @@
     outline: none;
 
 }
+
+.sample-container {
+    display: inline-block;
+    padding: 11px 15px;
+    width: 500px;
+    border-right: 1px solid #dadce0;
+}
+
+.sample-input {
+    height: 28px;
+    border: none;
+    font-size: 18px;
+    font-family: inherit;
+    width: 100%;
+    border-bottom: 0.5px solid #dadce0;
+}
+
+.sample-input:focus {
+    outline: none;
+}
