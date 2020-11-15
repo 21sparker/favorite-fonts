@@ -19,7 +19,6 @@
     height: 26px;
     border: none;
     font-size: 18px;
-    font-family: inherit;
     width: 100%;
 }
 
@@ -30,7 +29,7 @@
 
 .sample-container {
     display: inline-block;
-    padding: 11px 15px;
+    padding: 10px 15px;
     width: 500px;
     border-right: 1px solid #dadce0;
 }
@@ -39,7 +38,6 @@
     height: 28px;
     border: none;
     font-size: 18px;
-    font-family: inherit;
     width: 100%;
     border-bottom: 0.5px solid #dadce0;
 }
@@ -47,3 +45,21 @@
 .sample-input:focus {
     outline: none;
 }
+
+.font-size-container {
+    display: inline-block;
+    padding: 10px 15px;
+    border-right: 1px solid #dadce0;
+}
+
+.font-size-input {
+    border: none;
+    font-size: 18px;
+    height: 28px;
+}
+
+.font-size-input:focus {
+    outline: none;
+
+}
+
