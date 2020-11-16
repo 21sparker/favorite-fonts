@@ -26,19 +26,17 @@ const Toolbar = () => {
                         <option value="32">32px</option>
                     </select>
                 </div>
-                <div className={styles["toolbar-btns-container"]}>
-                    <div className={styles["toolbar-btns"]}>
-                        <div className={styles['dark-mode-input']}>
-                            <input type="radio" name="mode" value="Light" />
-                            <input type="radio" name="mode" value="Dark" />
-                        </div>                    
-                        <button>
-                            <FontAwesomeIcon icon="list"/>
-                        </button>                    
-                        <button>
-                            <FontAwesomeIcon icon="redo"/>
-                        </button>
-                    </div>
+                <div className={styles["toolbar-btns"]}>
+                    <div className={styles['dark-mode-input']}>
+                        <input type="radio" name="mode" value="Light" />
+                        <input type="radio" name="mode" value="Dark" />
+                    </div>                    
+                    <button>
+                        <FontAwesomeIcon icon="list"/>
+                    </button>                    
+                    <button>
+                        <FontAwesomeIcon icon="redo"/>
+                    </button>
                 </div>
             </div>
         </div>
