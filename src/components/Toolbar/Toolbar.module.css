@@ -60,6 +60,19 @@
 
 .font-size-input:focus {
     outline: none;
+}
 
+.dark-mode-container {
+    display: inline-block;
+    padding: 10px 15px;
+    border-right: 1px solid #dadce0;
+}
+
+.dark-mode-input {
+    padding: 3.5px 0;
+}
+
+.dark-mode-input > input {
+    margin: 0 5px;
 }
 

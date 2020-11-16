@@ -24,7 +24,13 @@ const Toolbar = () => {
                         <option value="24">24px</option>
                         <option value="32">32px</option>
                     </select>
-                </div>                
+                </div>
+                <div className={styles['dark-mode-container']}>
+                    <div className={styles['dark-mode-input']}>
+                        <input type="radio" name="mode" value="Light" />
+                        <input type="radio" name="mode" value="Dark" />
+                    </div>
+                </div>
             </div>
         </div>
         
