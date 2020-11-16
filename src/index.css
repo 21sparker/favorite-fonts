@@ -15,6 +15,11 @@ input, select {
   font: inherit;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
