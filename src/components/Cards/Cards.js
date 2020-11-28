@@ -8,7 +8,6 @@ const Cards = (props) => {
     const [fonts, setFonts] = useState([]);
     const [loadedFonts, setLoadedFonts] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
     const [initialLoad, setInitialLoad] = useState(true);
     
     const itemsPerPage = 25;

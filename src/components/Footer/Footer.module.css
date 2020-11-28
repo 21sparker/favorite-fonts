@@ -1,0 +1,12 @@
+.footer {
+    margin: 0 250px;
+    border-top: 0.5px solid #dadce0;
+    height: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    font-size: 0.8rem;
+    color: #5f6368;
+}
