@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 
 const Card = ({ font, sampleText }) => {
+
     const [displayText, setDisplayText] = useState(false);
 
     const style = {
@@ -10,12 +11,13 @@ const Card = ({ font, sampleText }) => {
         fontFamily: font.family,
     }
 
-    // useEffect(() => {
-    //     // const ff = new FontFace(font.family, `url(${font.files.regular})`);
-    //     // ff.load().then(f => document.fonts.add(f));
-    //     setDisplayText(true);
-    // }, [])
-    // console.log(inViewport, forwardedRef);
+    useEffect(() => {
+        console.log(font, font.files.regular)
+        const ff = new FontFace(font.family, `url(${font.files.regular})`);
+        ff.load().then(f => document.fonts.add(f));
+        setDisplayText(true);
+    }, [])
+
     return (
         <section className={styles["card"]}>
             <div className={styles["font-headers"]}>

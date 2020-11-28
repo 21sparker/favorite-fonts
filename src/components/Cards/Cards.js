@@ -9,53 +9,36 @@ const Cards = (props) => {
     const [loadedFonts, setLoadedFonts] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-    const [num, setNum] = useState(0);
+    const [initialLoad, setInitialLoad] = useState(true);
     
-    const itemsPerPage = 30;
+    const itemsPerPage = 25;
 
     useEffect(() => {
         const items = data.items;
-        console.log(items.slice(0,50))
-        setFonts(items.slice(0,50));
+
+        setFonts(items);
+        setLoadedFonts(items.slice(0, itemsPerPage));
+        setInitialLoad(false);
     }, []);
 
-    useEffect(() => {
-        console.log("num changed");   
-    }, [num])
-    // useEffect(() => {
-    //     console.log(isLoading);
-    //     console.log(loadedFonts);
-    // }, [isLoading, loadedFonts]);
+
 
     const loadItems = async (page) => {
-        console.log("Called")
-        // if (isLoading) {
-        //     console.log("Ran here")
-        //     return;
-        // }
-        setNum(num + 1);
+        setInitialLoad(false);
 
-        // await setIsLoading(true);
-        // console.log("Called", page)
-        // console.log(itemsPerPage);
-        // const loadedFonts = fonts.slice(page*itemsPerPage, page*itemsPerPage+itemsPerPage);
-        // await setLoadedFonts(loadedFonts);
+        const loadedFonts = fonts.slice(0, page*itemsPerPage+itemsPerPage);
+        setLoadedFonts(loadedFonts);
 
-        // const hasMoreItems = page*itemsPerPage+itemsPerPage >= fonts.length;
-        // console.log("Has more items ", page*itemsPerPage+itemsPerPage)
-        // if (!hasMoreItems) {
-        //     await setHasMoreItems(false);
-        // }
-        // await setIsLoading(false);
-        // setHasMoreItems(false);
-
+        const hasMoreItems = page*itemsPerPage+itemsPerPage >= fonts.length;
+        setHasMoreItems(false);
     }
 
     return (
         <InfiniteScroll
+            initialLoad={initialLoad}
             pageStart={0}
             loadMore={loadItems}
-            hasMore={hasMoreItems}>
+            hasMore={true}>
             
             <div className={styles.container}>
                 {loadedFonts.map(f => 
