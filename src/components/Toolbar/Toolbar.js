@@ -1,7 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Toolbar.module.css';
 
-const Toolbar = () => {
+const Toolbar = (props) => {
+
+    const handleSampleTextChange = e => {
+        props.setSampleText(e.target.value);
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.toolbar}>
@@ -15,7 +20,8 @@ const Toolbar = () => {
                     <input
                         type='text'
                         placeholder='Type Something'
-                        className={styles['sample-input']}/>
+                        className={styles['sample-input']}
+                        onChange={handleSampleTextChange}/>
                 </div>
                 <div className={styles['font-size-container']}>
                     <select className={styles['font-size-input']}>
