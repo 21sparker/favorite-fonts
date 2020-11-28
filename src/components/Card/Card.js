@@ -27,8 +27,7 @@ const Card = ({ font, sampleText }) => {
     return (
         <section className={styles["card"]}>
             <div className={styles["font-headers"]}>
-                <h1>Roboto</h1>
-                <h2>Christian Robertson</h2>
+                <h1>{font.family}</h1>
                 <span className={styles["add-btn"]}>
                     <FontAwesomeIcon icon="plus-circle" />
                 </span>
