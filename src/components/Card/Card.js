@@ -16,7 +16,7 @@ const Card = ({ font, sampleText }) => {
         if (!font.variants.includes('regular')) {
             variant = font.variants[font.variants.length - 1];
         }
-        
+
         const ff = new FontFace(font.family, `url(${font.files[variant]})`);
         ff.load()
           .then(f => document.fonts.add(f))
@@ -43,29 +43,6 @@ const Card = ({ font, sampleText }) => {
             </p>
         </section>
     )
-
-    // return inViewport 
-    //     ? (
-    //         <section className={styles["card"]} ref={forwardedRef}>
-    //             <div className={styles["font-headers"]}>
-    //                 <h1>Roboto</h1>
-    //                 <h2>Christian Robertson</h2>
-    //                 <span className={styles["add-btn"]}>
-    //                     <FontAwesomeIcon icon="plus-circle" />
-    //                 </span>
-    //             </div>
-    //             <p className={styles["font-sample-text"]}
-    //                 style={style}>
-    //                 {displayText 
-    //                 ? sampleText === "" 
-    //                     ? "They ran through the forest and found the bag."
-    //                     : sampleText
-    //                 : ""}
-    //             </p>
-    //         </section>
-    //     )
-    //     : null
-        
 }
 
 

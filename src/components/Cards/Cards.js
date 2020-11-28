@@ -15,9 +15,10 @@ const Cards = (props) => {
 
     useEffect(() => {
         const items = data.items;
-
+        console.log(items.length)
         setFonts(items);
         setLoadedFonts(items.slice(0, itemsPerPage));
+        setHasMoreItems(true)
         setInitialLoad(false);
     }, []);
 
@@ -29,8 +30,8 @@ const Cards = (props) => {
         const loadedFonts = fonts.slice(0, page*itemsPerPage+itemsPerPage);
         setLoadedFonts(loadedFonts);
 
-        const hasMoreItems = page*itemsPerPage+itemsPerPage >= fonts.length;
-        setHasMoreItems(false);
+        const hasMoreItems = page*itemsPerPage+itemsPerPage <= fonts.length;
+        setHasMoreItems(hasMoreItems);
     }
 
     return (
@@ -38,7 +39,7 @@ const Cards = (props) => {
             initialLoad={initialLoad}
             pageStart={0}
             loadMore={loadItems}
-            hasMore={true}>
+            hasMore={hasMoreItems}>
             
             <div className={styles.container}>
                 {loadedFonts.map(f => 
@@ -49,13 +50,6 @@ const Cards = (props) => {
             </div>
         </InfiniteScroll>
     )
-
-    // return (
-    //     <div className={styles.container}>
-    //         {fonts.map(f => <ViewportCard font={f} sampleText={props.sampleText}  key={f.family}
-    //                         onEnterViewport={() => console.log("Enter")} onLeaveViewport={() => console.log("Leave")}/>)}
-    //     </div>
-    // )
 }
 
 export default Cards;
