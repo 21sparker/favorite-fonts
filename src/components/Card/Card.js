@@ -12,9 +12,15 @@ const Card = ({ font, sampleText }) => {
     }
 
     useEffect(() => {
-        console.log(font, font.files.regular)
-        const ff = new FontFace(font.family, `url(${font.files.regular})`);
-        ff.load().then(f => document.fonts.add(f));
+        let variant = 'regular'
+        if (!font.variants.includes('regular')) {
+            variant = font.variants[font.variants.length - 1];
+        }
+        
+        const ff = new FontFace(font.family, `url(${font.files[variant]})`);
+        ff.load()
+          .then(f => document.fonts.add(f))
+          .catch(e => console.log(font));
         setDisplayText(true);
     }, [])
 
