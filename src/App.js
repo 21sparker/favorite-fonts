@@ -15,6 +15,7 @@ import data from './components/Cards/data.json';
 library.add(faList, faRedo, faPlusCircle, faArrowCircleUp);
 
 function App() {
+  const [searchText, setSearchText] = useState("");
   const [sampleText, setSampleText] = useState("");
   const [fonts, setFonts] = useState([]);
   const [filteredFonts, setFilteredFonts] = useState([]);
@@ -33,10 +34,10 @@ function App() {
   }, []);
 
   const searchFonts = async(query) => {
+    setSearchText(query);
     await setHideCards(true);
     const lowerSearchText = query.toLowerCase();
     
-    console.log(lowerSearchText, lowerSearchText === "")
     let filteredFonts = fonts;
     if (lowerSearchText !== "") {
       filteredFonts = fonts.filter(font => font.family.toLowerCase().includes(lowerSearchText));
@@ -49,26 +50,34 @@ function App() {
   }
 
   const loadFonts = (page) => {
-    console.log("Ran load fonts")
     if (filteredFonts.length !== 0) {
       setDisplayedFonts(filteredFonts.slice(0, page*itemsPerPage+itemsPerPage));
-      console.log("More fonts",page*itemsPerPage+itemsPerPage <= filteredFonts.length)
       setMoreFontsToDisplay(page*itemsPerPage+itemsPerPage <= filteredFonts.length);      
     }
   }
 
-  const resetApp = () => {
-    
+  const resetApp = async () => {
+    const items = data.items;
+    await setFonts(items);
+    searchFonts("");
+
+    setSearchText("");
+    setSampleText("");
+    setFontSize("16px");
   }
 
   return (
     <div className="App">
       <Navbar />
       <Toolbar 
+        searchText={searchText}
+        setSearchText={setSearchText}
+        sampleText={sampleText}
         setSampleText={setSampleText}
-        searchFonts={searchFonts}
+        fontSize={fontSize}
         setFontSize={setFontSize}
-        initialFontSize={"16"}/>
+        searchFonts={searchFonts}
+        resetApp={resetApp}/>
       {hideCards ? null : (
         <Cards 
           fonts={displayedFonts}

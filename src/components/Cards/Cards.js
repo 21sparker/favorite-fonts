@@ -7,15 +7,11 @@ import InfiniteScroll from 'react-infinite-scroller';
 const Cards = (props) => {
     const {fonts, sampleText, loadFonts, hasMoreFonts, fontSize} = props;
 
-    const [counter, setCounter] = useState(0);
-
     useEffect(() => {
-        setCounter(counter+1);
-        console.log("Counter ", counter);
-    },[fonts, sampleText, loadFonts, hasMoreFonts, fontSize])
+
+    },[])
     
     const loadItems = (page) => {
-        console.log(page);
         loadFonts(page)
     }
 

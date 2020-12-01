@@ -4,24 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Toolbar.module.css';
 
 const Toolbar = (props) => {
-    const [fontSize, setFontSize] = useState(props.initialFontSize);
-
-    const handleSampleTextChange = e => {
-        props.setSampleText(e.target.value);
-    }
-
-    const handleSearchTextChange = e => {
-        props.searchFonts(e.target.value);
-    }
-
-    const handleFontSizeValueChange = e => {
-        setFontSize(e.target.value);
-        props.setFontSize(e.target.value + "px");
-    }
-
-    const handleResetBtnClick = e => {
-        props.resetApp();
-    }
+    const { fontSize, setFontSize, 
+            searchText, searchFonts,
+            sampleText, setSampleText,
+            resetApp } = props;
 
     return (
         <div className={styles.container}>
@@ -29,27 +15,29 @@ const Toolbar = (props) => {
                 <div className={styles['search-container']}>
                     <input
                         type='text'
+                        value={searchText}
                         placeholder='Search fonts'
                         className={styles['search-input']}
-                        onChange={handleSearchTextChange}/>
+                        onChange={e => searchFonts(e.target.value)}/>
                 </div>
                 <div className={styles['sample-container']}>
                     <input
                         type='text'
+                        value={sampleText}
                         placeholder='Type Something'
                         className={styles['sample-input']}
-                        onChange={handleSampleTextChange}/>
+                        onChange={e => setSampleText(e.target.value)}/>
                 </div>
                 <div className={styles['font-size-container']}>
                     <select 
                         value={fontSize}
                         className={styles['font-size-input']} 
-                        onChange={handleFontSizeValueChange}>
-                        <option value="8">8px</option>
-                        <option value="12">12px</option>
-                        <option value="16">16px</option>
-                        <option value="24">24px</option>
-                        <option value="32">32px</option>
+                        onChange={e => setFontSize(e.target.value)}>
+                        <option value="8px">8px</option>
+                        <option value="12px">12px</option>
+                        <option value="16px">16px</option>
+                        <option value="24px">24px</option>
+                        <option value="32px">32px</option>
                     </select>
                 </div>
                 <div className={styles["toolbar-btns"]}>
@@ -60,7 +48,7 @@ const Toolbar = (props) => {
                     <button>
                         <FontAwesomeIcon icon="list"/>
                     </button>                    
-                    <button onClick={handleResetBtnClick}>
+                    <button onClick={resetApp}>
                         <FontAwesomeIcon icon="redo"/>
                     </button>
                 </div>
