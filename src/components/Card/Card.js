@@ -2,12 +2,12 @@ import styles from './Card.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 
-const Card = ({ font, sampleText }) => {
+const Card = ({ font, sampleText, fontSize }) => {
 
     const [displayText, setDisplayText] = useState(false);
 
     const style = {
-        fontSize: "18px",
+        fontSize: fontSize,
         fontFamily: font.family,
     }
 
@@ -22,7 +22,7 @@ const Card = ({ font, sampleText }) => {
           .then(f => document.fonts.add(f))
           .catch(e => console.log(font));
         setDisplayText(true);
-    }, [])
+    }, []);
 
     return (
         <section className={styles["card"]}>

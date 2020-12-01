@@ -1,10 +1,26 @@
+import { useState } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Toolbar.module.css';
 
 const Toolbar = (props) => {
+    const [fontSize, setFontSize] = useState(props.initialFontSize);
 
     const handleSampleTextChange = e => {
         props.setSampleText(e.target.value);
+    }
+
+    const handleSearchTextChange = e => {
+        props.searchFonts(e.target.value);
+    }
+
+    const handleFontSizeValueChange = e => {
+        setFontSize(e.target.value);
+        props.setFontSize(e.target.value + "px");
+    }
+
+    const handleResetBtnClick = e => {
+        props.resetApp();
     }
 
     return (
@@ -14,7 +30,8 @@ const Toolbar = (props) => {
                     <input
                         type='text'
                         placeholder='Search fonts'
-                        className={styles['search-input']}/>
+                        className={styles['search-input']}
+                        onChange={handleSearchTextChange}/>
                 </div>
                 <div className={styles['sample-container']}>
                     <input
@@ -24,7 +41,10 @@ const Toolbar = (props) => {
                         onChange={handleSampleTextChange}/>
                 </div>
                 <div className={styles['font-size-container']}>
-                    <select className={styles['font-size-input']}>
+                    <select 
+                        value={fontSize}
+                        className={styles['font-size-input']} 
+                        onChange={handleFontSizeValueChange}>
                         <option value="8">8px</option>
                         <option value="12">12px</option>
                         <option value="16">16px</option>
@@ -40,7 +60,7 @@ const Toolbar = (props) => {
                     <button>
                         <FontAwesomeIcon icon="list"/>
                     </button>                    
-                    <button>
+                    <button onClick={handleResetBtnClick}>
                         <FontAwesomeIcon icon="redo"/>
                     </button>
                 </div>

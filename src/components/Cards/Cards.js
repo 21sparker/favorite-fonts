@@ -5,47 +5,49 @@ import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
 const Cards = (props) => {
-    const [fonts, setFonts] = useState([]);
-    const [loadedFonts, setLoadedFonts] = useState([]);
-    const [hasMoreItems, setHasMoreItems] = useState(true);
-    const [initialLoad, setInitialLoad] = useState(true);
+    const {fonts, sampleText, loadFonts, hasMoreFonts, fontSize} = props;
+
+    // const [fonts, setFonts] = useState([]);
+    // const [loadedFonts, setLoadedFonts] = useState([]);
+    // const [hasMoreItems, setHasMoreItems] = useState(true);
+    // const [initialLoad, setInitialLoad] = useState(true);
     
     const itemsPerPage = 25;
 
     useEffect(() => {
-        const items = data.items;
-        console.log(items.length)
-        setFonts(items);
-        setLoadedFonts(items.slice(0, itemsPerPage));
-        setHasMoreItems(true)
-        setInitialLoad(false);
-    }, []);
+        // setLoadedFonts(fonts.slice(0, itemsPerPage));
+        // setHasMoreItems(true);
+        // setInitialLoad(false);
+    })
+    
+    const loadItems = (page) => {
+        console.log(page);
+        loadFonts(page)
+        // setInitialLoad(false);
 
+        // loadFonts(page);
+        // const loadedFonts = fonts.slice(0, page*itemsPerPage+itemsPerPage);
+        // setLoadedFonts(loadedFonts);
 
-
-    const loadItems = async (page) => {
-        setInitialLoad(false);
-
-        const loadedFonts = fonts.slice(0, page*itemsPerPage+itemsPerPage);
-        setLoadedFonts(loadedFonts);
-
-        const hasMoreItems = page*itemsPerPage+itemsPerPage <= fonts.length;
-        setHasMoreItems(hasMoreItems);
+        // const hasMoreItems = page*itemsPerPage+itemsPerPage <= fonts.length;
+        // setHasMoreItems(hasMoreItems);
     }
 
     return (
         <InfiniteScroll
-            initialLoad={initialLoad}
+            initialLoad={true}
             pageStart={0}
             loadMore={loadItems}
-            hasMore={hasMoreItems}>
+            hasMore={hasMoreFonts}
+            >
             
             <div className={styles.container}>
-                {loadedFonts.map(f => 
+                {fonts.map(f => 
                             <Card 
                                 font={f}
-                                sampleText={props.sampleText} 
-                                key={f.family} />)}
+                                sampleText={sampleText} 
+                                key={f.family}
+                                fontSize={fontSize} />)}
             </div>
         </InfiniteScroll>
     )
