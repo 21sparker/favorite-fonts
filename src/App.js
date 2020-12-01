@@ -21,8 +21,8 @@ function App() {
   const [displayedFonts, setDisplayedFonts] = useState([]);
   const [moreFontsToDisplay, setMoreFontsToDisplay] = useState(true);
   const [fontSize, setFontSize] = useState("16px");
+  const [hideCards, setHideCards] = useState(false)
 
-  // let page = 0;
   const itemsPerPage = 20;
 
   useEffect(() => {
@@ -32,8 +32,8 @@ function App() {
     setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
   }, []);
 
-  const searchFonts = (query) => {
-    // page = 0;
+  const searchFonts = async(query) => {
+    await setHideCards(true);
     const lowerSearchText = query.toLowerCase();
     
     console.log(lowerSearchText, lowerSearchText === "")
@@ -44,9 +44,12 @@ function App() {
     
     setFilteredFonts(filteredFonts);
     setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
+    setMoreFontsToDisplay(itemsPerPage <= filteredFonts.length);
+    setHideCards(false)
   }
 
   const loadFonts = (page) => {
+    console.log("Ran load fonts")
     if (filteredFonts.length !== 0) {
       setDisplayedFonts(filteredFonts.slice(0, page*itemsPerPage+itemsPerPage));
       console.log("More fonts",page*itemsPerPage+itemsPerPage <= filteredFonts.length)
@@ -66,12 +69,14 @@ function App() {
         searchFonts={searchFonts}
         setFontSize={setFontSize}
         initialFontSize={"16"}/>
-      <Cards 
-        fonts={displayedFonts}
-        sampleText={sampleText}
-        loadFonts={loadFonts}
-        hasMoreFonts={moreFontsToDisplay}
-        fontSize={fontSize}/>
+      {hideCards ? null : (
+        <Cards 
+          fonts={displayedFonts}
+          sampleText={sampleText}
+          loadFonts={loadFonts}
+          hasMoreFonts={moreFontsToDisplay}
+          fontSize={fontSize}/>
+      )}
       <ScrollButton scrollStepInPx="100" delayInMs="25"/>
       <Footer />
     </div>

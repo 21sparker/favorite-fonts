@@ -7,30 +7,16 @@ import InfiniteScroll from 'react-infinite-scroller';
 const Cards = (props) => {
     const {fonts, sampleText, loadFonts, hasMoreFonts, fontSize} = props;
 
-    // const [fonts, setFonts] = useState([]);
-    // const [loadedFonts, setLoadedFonts] = useState([]);
-    // const [hasMoreItems, setHasMoreItems] = useState(true);
-    // const [initialLoad, setInitialLoad] = useState(true);
-    
-    const itemsPerPage = 25;
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
-        // setLoadedFonts(fonts.slice(0, itemsPerPage));
-        // setHasMoreItems(true);
-        // setInitialLoad(false);
-    })
+        setCounter(counter+1);
+        console.log("Counter ", counter);
+    },[fonts, sampleText, loadFonts, hasMoreFonts, fontSize])
     
     const loadItems = (page) => {
         console.log(page);
         loadFonts(page)
-        // setInitialLoad(false);
-
-        // loadFonts(page);
-        // const loadedFonts = fonts.slice(0, page*itemsPerPage+itemsPerPage);
-        // setLoadedFonts(loadedFonts);
-
-        // const hasMoreItems = page*itemsPerPage+itemsPerPage <= fonts.length;
-        // setHasMoreItems(hasMoreItems);
     }
 
     return (
