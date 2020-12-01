@@ -33,4 +33,5 @@
 .font-sample-text {
     min-height: 100px;
     margin: 0 15px 20px 15px;
+    overflow-wrap: anywhere;
 }
