@@ -17,10 +17,14 @@ const Card = ({ font, sampleText, fontSize }) => {
             variant = font.variants[font.variants.length - 1];
         }
 
-        const ff = new FontFace(font.family, `url(${font.files[variant]})`);
-        ff.load()
-          .then(f => document.fonts.add(f))
-          .catch(e => console.log(font));
+        // Add font to document.fonts if not already there
+        if (!document.fonts.check(`12px '${font.family}'`)) {
+            const ff = new FontFace(font.family, `url(${font.files[variant]})`);
+            ff.load()
+              .then(f => document.fonts.add(f))
+              .catch(e => console.log(font));
+        }
+
         setDisplayText(true);
     }, []);
 
