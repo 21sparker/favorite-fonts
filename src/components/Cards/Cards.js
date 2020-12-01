@@ -1,7 +1,6 @@
 import styles from './Cards.module.css';
-import data from './data.json';
 import Card from '../Card/Card.js';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
 const Cards = (props) => {
