@@ -10,8 +10,6 @@ import Footer from './components/Footer/Footer';
 
 import './App.css';
 
-import data from './components/Cards/data.json';
-
 library.add(faList, faRedo, faPlusCircle, faArrowCircleUp);
 
 function App() {
@@ -27,10 +25,14 @@ function App() {
   const itemsPerPage = 20;
 
   useEffect(() => {
-    const items = data.items;
-    setFonts(items);
-    setFilteredFonts(items);
-    setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
+    fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAG8rrW4vpyvSk8oispKvmJBD0GQl2iUjs")
+      .then(res => res.json())
+      .then(resJson => {
+        setFonts(resJson.items);
+        setFilteredFonts(resJson.items);
+        setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
+      })
+      .catch(err => console.log(err))
   }, []);
 
   const searchFonts = async(query) => {
@@ -57,10 +59,16 @@ function App() {
   }
 
   const resetApp = async () => {
-    const items = data.items;
-    await setFonts(items);
-    searchFonts("");
+    await fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAG8rrW4vpyvSk8oispKvmJBD0GQl2iUjs")
+      .then(res => res.json())
+      .then(resJson => {
+        setFonts(resJson.items);
+        setFilteredFonts(resJson.items);
+        setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
+      })
+      .catch(err => console.log(err))
 
+    searchFonts("");
     setSearchText("");
     setSampleText("");
     setFontSize("16px");
