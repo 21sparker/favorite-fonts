@@ -25,9 +25,10 @@ function App() {
   const itemsPerPage = 20;
 
   useEffect(() => {
-    fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAG8rrW4vpyvSk8oispKvmJBD0GQl2iUjs")
+    fetch("https://favorite-fonts-backend.herokuapp.com/getdata")
       .then(res => res.json())
       .then(resJson => {
+        console.log("Reached here");
         setFonts(resJson.items);
         setFilteredFonts(resJson.items);
         setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
@@ -59,7 +60,7 @@ function App() {
   }
 
   const resetApp = async () => {
-    await fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAG8rrW4vpyvSk8oispKvmJBD0GQl2iUjs")
+    await fetch("https://favorite-fonts-backend.herokuapp.com/getdata")
       .then(res => res.json())
       .then(resJson => {
         setFonts(resJson.items);
