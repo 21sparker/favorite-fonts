@@ -19,7 +19,8 @@ const Card = ({ font, sampleText, fontSize }) => {
 
         // Add font to document.fonts if not already there
         if (!document.fonts.check(`12px '${font.family}'`)) {
-            const ff = new FontFace(font.family, `url(${font.files[variant]})`);
+            const url = font.files[variant].replace("http", "https")
+            const ff = new FontFace(font.family, `url(${url})`);
             ff.load()
               .then(f => document.fonts.add(f))
               .catch(e => console.log(font));
