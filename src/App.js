@@ -28,7 +28,6 @@ function App() {
     fetch("https://favorite-fonts-backend.herokuapp.com/getdata")
       .then(res => res.json())
       .then(resJson => {
-        console.log("Reached here");
         setFonts(resJson.items);
         setFilteredFonts(resJson.items);
         setDisplayedFonts(filteredFonts.slice(0, itemsPerPage));
